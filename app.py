@@ -26,5 +26,9 @@ def process_lyrics():
     # Return the processed result as JSON
     return jsonify({'data': emotion})
 
+@app.route('/test', methods=['GET'])
+def test():
+  return 'test'
+
 if __name__ == "__main__":
     app.run(debug=True)
