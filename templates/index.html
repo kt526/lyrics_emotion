@@ -11,13 +11,20 @@
 </head>
 
 <body>
-    <div class="container text-center">
+    <div class="container text-center mt-3">
         <div class="row">
             <div class="col">
-                <div class="container mt-5">
+                <h4>Input Song Lyrics:</h4>
+            </div>
+            <div class="col">
+                <h4>Analysis Result:</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="container">
                     <form id="lyricsForm">
                         <div class="mb-3">
-                            <label for="lyrics" class="form-label">Input Song Lyrics:</label>
                             <textarea class="form-control" id="lyrics" rows="25" style="resize: none;"></textarea>
                         </div>
                         <button type="button" class="btn btn-primary" onclick="analyse()">Submit</button>
@@ -25,9 +32,7 @@
                 </div>
             </div>
             <div class="col">
-                <h1 id="result">Test</h1>
                 <div id="div_result" hidden>
-                    <h3>Analysis Result</h3>
                     <p id="card_text"></p>
                 </div>
             </div>
@@ -39,13 +44,13 @@
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
-        const url = "https://kitten123.netlify.app/";  // Replace with your Flask app URL
+        const BASE_URL = 'https://adminapi.pythonanywhere.com/'
 
         async function analyse() {
             const lyrics = document.getElementById('lyrics').value;
 
             try {
-                const response = await fetch(`${url}/process_lyrics`, {
+                const response = await fetch(`${BASE_URL}/process_lyrics`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -60,14 +65,13 @@
                 }
 
                 const data = await response.json();
-                console.log('test');
                 console.log(data["data"]);
 
                 $('#modal-loading').modal('hide');
                 document.getElementById("card_text").innerHTML = data["data"];
                 document.getElementById("div_result").hidden = false;
 
-                return data;
+                // return data;
             } catch (error) {
                 console.error('Error:', error);
                 $('#modal-loading').modal('hide');

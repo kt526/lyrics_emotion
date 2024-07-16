@@ -6,10 +6,10 @@ from nltk import *
 from unicodedata2 import *
 from inflect import *
 from nltk.corpus import stopwords
-from nltk.corpus import wordnet as wn
+# from nltk.corpus import wordnet as wn
 import warnings
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.metrics import accuracy_score
+# from sklearn.feature_extraction.text import CountVectorizer
+# from sklearn.metrics import accuracy_score
 import pickle
 warnings.filterwarnings('ignore')
 
